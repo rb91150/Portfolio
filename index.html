@@ -2,6 +2,8 @@
 
 <html lang="fr">
 
+
+
 <head>
 
     <meta charset="UTF-8">
@@ -10,11 +12,13 @@
 
     <title>Portfolio BTS SIO SLAM</title>
 
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+
     <style>
 
         body {
 
-            font-family: Arial, sans-serif;
+            font-family: 'Montserrat', Arial, sans-serif;
 
             background-color: #f4f4f4;
 
@@ -25,6 +29,8 @@
             transition: background-color 0.3s, color 0.3s;
 
         }
+
+
 
         header {
 
@@ -40,11 +46,15 @@
 
         }
 
+
+
         header h1 {
 
             margin: 0;
 
         }
+
+
 
         .theme-toggle {
 
@@ -62,6 +72,8 @@
 
         }
 
+
+
         nav {
 
             background-color: #444;
@@ -69,6 +81,8 @@
             overflow: hidden;
 
         }
+
+
 
         nav a {
 
@@ -86,6 +100,8 @@
 
         }
 
+
+
         nav a:hover {
 
             background-color: #ddd;
@@ -94,11 +110,15 @@
 
         }
 
+
+
         .container {
 
             padding: 20px;
 
         }
+
+
 
         .section {
 
@@ -106,11 +126,15 @@
 
         }
 
+
+
         .section.active {
 
             display: block;
 
         }
+
+
 
         .dark-mode {
 
@@ -120,6 +144,8 @@
 
         }
 
+
+
         .dark-mode header {
 
             background-color: #000;
@@ -127,6 +153,8 @@
             border-bottom: 2px dashed #00ff00;
 
         }
+
+
 
         .dark-mode nav {
 
@@ -136,11 +164,15 @@
 
         }
 
+
+
         .dark-mode nav a {
 
             color: #00ff00;
 
         }
+
+
 
         .dark-mode nav a:hover {
 
@@ -149,6 +181,8 @@
             color: #000;
 
         }
+
+
 
         .logo {
 
@@ -162,19 +196,25 @@
 
         }
 
+
+
         .animated-screen {
 
-            width: 100%;
+            width: 50%;
 
-            height: 300px;
+            height: auto;
 
-            background: url('animated-screen.png') no-repeat center center;
+            max-height: 250px;
+
+            background: url('icons/animated-screen.svg') no-repeat center center;
 
             background-size: contain;
 
-            animation: screenAnimation 3s infinite alternate;
+            animation: screenAnimation 3s infinite alternate ease-in-out;
 
         }
+
+
 
         @keyframes screenAnimation {
 
@@ -182,15 +222,31 @@
 
                 transform: scale(1);
 
+                filter: brightness(1);
+
             }
+
+
+
+            50% {
+
+                filter: brightness(1.5);
+
+            }
+
+
 
             100% {
 
                 transform: scale(1.1);
 
+                filter: brightness(1);
+
             }
 
         }
+
+
 
         .theme-icon {
 
@@ -216,6 +272,8 @@
 
             document.getElementById(sectionId).classList.add('active');
 
+            toggleLogo(sectionId);
+
         }
 
 
@@ -230,130 +288,186 @@
 
             if (body.classList.contains('dark-mode')) {
 
-                themeIcon.src = 'icons/sun-icon.png'; // Change to your light mode icon
+                themeIcon.src = 'icons/sun-icon.png';
 
             } else {
 
-                themeIcon.src = 'icons/moon-icon.png'; // Change to your dark mode icon
+                themeIcon.src = 'icons/moon-icon.png';
 
             }
 
         }
 
+
+
+        function toggleLogo(sectionId) {
+
+            var animatedLogo = document.getElementById('animated-logo');
+
+            var staticLogo = document.getElementById('static-logo');
+
+            if (sectionId === 'accueil') {
+
+                animatedLogo.style.display = 'block';
+
+                staticLogo.style.display = 'none';
+
+            } else {
+
+                animatedLogo.style.display = 'none';
+
+                staticLogo.style.display = 'block';
+
+            }
+
+        }
+
+
+
+        document.addEventListener('DOMContentLoaded', function () {
+
+            toggleLogo('accueil');
+
+        });
+
     </script>
 
 </head>
+
+
 
 <body>
 
 
 
-<header>
+    <header>
 
-    <h1>Portfolio BTS SIO</h1>
+        <h1>Portfolio BTS SIO</h1>
 
-    <button class="theme-toggle" onclick="toggleTheme()">
+        <button class="theme-toggle" onclick="toggleTheme()">
 
-        <img id="theme-icon" src="icons/moon-icon.png" alt="Toggle Theme" class="theme-icon">
+            <img id="theme-icon" src="icons/moon-icon.png" alt="Toggle Theme" class="theme-icon">
 
-    </button>
+        </button>
 
-</header>
-
-
-
-<nav>
-
-    <a href="#" onclick="showSection('accueil')">Accueil</a>
-
-    <a href="#" onclick="showSection('apropos')">À propos</a>
-
-    <a href="#" onclick="showSection('veille')">Veille technologique</a>
-
-    <a href="#" onclick="showSection('notes')">Notes de synthèse</a>
-
-    <a href="#" onclick="showSection('contact')">Contact</a>
-
-</nav>
+    </header>
 
 
 
-<div class="container">
+    <nav>
 
-    <img src="icons/animated-screen.png" alt="Logo" class="logo">
+        <a href="#" onclick="showSection('accueil')">Accueil</a>
 
-    <div id="accueil" class="section active">
+        <a href="#" onclick="showSection('apropos')">À propos</a>
 
-        <h2>Accueil</h2>
+        <a href="#" onclick="showSection('cv')">CV</a>
 
-        <p>Bienvenue sur le portfolio de Raphaël Boee Bosale, étudiant en première année de BTS Services Informatiques aux Organisations (SIO) spécialité SLAM.</p>
+        <a href="#" onclick="showSection('tp-ap')">TP/AP</a>
 
-        <div class="animated-screen"></div>
+        <a href="#" onclick="showSection('veille')">Veille technologique</a>
+
+        <a href="#" onclick="showSection('notes')">Notes de synthèse</a>
+
+        <a href="#" onclick="showSection('contact')">Contact</a>
+
+    </nav>
+
+
+
+    <div class="container">
+
+        <img id="animated-logo" src="icons/animated-screen.svg" alt="Logo animé" class="logo animated-screen">
+
+        <img id="static-logo" src="icons/animated-screen.png" alt="Logo statique" class="logo" style="display:none;">
+
+        <div id="accueil" class="section active">
+
+            <h2>Accueil</h2>
+
+            <p>Bienvenue sur le portfolio de Raphaël Boee Bosale, étudiant en première année de BTS Services Informatiques aux Organisations (SIO) spécialité SLAM.</p>
+
+        </div>
+
+        <div id="apropos" class="section">
+
+            <h2>À propos</h2>
+
+            <p>Je suis un étudiant proactif, rigoureux et collaboratif à la recherche de nouvelles opportunités pour mettre à profit mes compétences en informatique. Actuellement en première année de BTS SIO à Étampes et en stage, je suis passionné par le développement web, la gestion de projets informatiques et la cybersécurité.</p>
+
+            <p>Le BTS Services Informatiques aux Organisations (SIO) est une formation qui prépare aux métiers de l'informatique en entreprise. Il propose deux spécialités :</p>
+
+            <ul>
+
+                <li><strong>SISR (Solutions d’Infrastructure, Systèmes et Réseaux)</strong> : axée sur la gestion et la maintenance des infrastructures réseaux et systèmes.</li>
+
+                <li><strong>SLAM (Solutions Logicielles et Applications Métiers)</strong> : orientée vers le développement de logiciels et d’applications pour répondre aux besoins spécifiques des entreprises.</li>
+
+            </ul>
+
+            <p>En choisissant la spécialité SLAM, j'ai acquis des compétences en programmation, en développement d'applications et en gestion de bases de données, me permettant de concevoir des solutions logicielles adaptées aux besoins des utilisateurs.</p>
+
+        </div>
+
+        <div id="cv" class="section">
+
+            <h2>CV</h2>
+
+            <p>Mon curriculum vitae se trouve ici.</p>
+
+        </div>
+
+        <div id="tp-ap" class="section">
+
+            <h2>TP/AP</h2>
+
+            <p>Voici mes travaux pratiques (TP) et activités professionnelles (AP).</p>
+
+        </div>
+
+        <div id="veille" class="section">
+
+            <h2>Veille technologique</h2>
+
+            <p>Voici mes travaux de veille technologique.</p>
+
+        </div>
+
+        <div id="notes" class="section">
+
+            <h2>Notes de synthèse</h2>
+
+            <p>Vous trouverez ici les notes de synthèse rédigées dans le cadre de mon stage.</p>
+
+            <ul>
+
+                <li><a href="https://docs.google.com/document/d/1smSfE85Gs767iWNDNRyt_AsRA2Tn9lO6CrkGj_OgJ8M/edit?usp=sharing" target="_blank">Note de synthèse - Stage</a></li>
+
+            </ul>
+
+        </div>
+
+        <div id="contact" class="section">
+
+            <h2>Contact</h2>
+
+            <p>Vous pouvez me contacter à l'adresse suivante :</p>
+
+            <ul>
+
+                <li>Téléphone : 06.24.99.94.30</li>
+
+                <li>Email : raphael.boeebosale.pro@gmail.com</li>
+
+            </ul>
+
+        </div>
 
     </div>
-
-    <div id="apropos" class="section">
-
-        <h2>À propos</h2>
-
-        <p>Je suis un étudiant proactif, rigoureux et collaboratif à la recherche de nouvelles opportunités pour mettre à profit mes compétences en informatique. Actuellement en première année de BTS SIO à Étampes et en stage, je suis passionné par le développement web, la gestion de projets informatiques et la cybersécurité.</p>
-
-        <p>Le BTS Services Informatiques aux Organisations (SIO) est une formation qui prépare aux métiers de l'informatique en entreprise. Il propose deux spécialités :</p>
-
-        <ul>
-
-            <li><strong>SISR (Solutions d’Infrastructure, Systèmes et Réseaux)</strong> : axée sur la gestion et la maintenance des infrastructures réseaux et systèmes.</li>
-
-            <li><strong>SLAM (Solutions Logicielles et Applications Métiers)</strong> : orientée vers le développement de logiciels et d’applications pour répondre aux besoins spécifiques des entreprises.</li>
-
-        </ul>
-
-        <p>En choisissant la spécialité SLAM, j'ai acquis des compétences en programmation, en développement d'applications et en gestion de bases de données, me permettant de concevoir des solutions logicielles adaptées aux besoins des utilisateurs.</p>
-
-    </div>
-
-    <div id="veille" class="section">
-
-        <h2>Veille technologique</h2>
-
-        <p>Voici mes travaux de veille technologique.</p>
-
-    </div>
-
-    <div id="notes" class="section">
-
-        <h2>Notes de synthèse</h2>
-
-        <p>Vous trouverez ici les notes de synthèse rédigées dans le cadre de mon stage.</p>
-
-        <ul>
-
-            <li><a href="https://docs.google.com/document/d/1smSfE85Gs767iWNDNRyt_AsRA2Tn9lO6CrkGj_OgJ8M/edit?usp=sharing" target="_blank">Note de synthèse - Stage</a></li>
-
-        </ul>
-
-    </div>
-
-    <div id="contact" class="section">
-
-        <h2>Contact</h2>
-
-        <p>Vous pouvez me contacter à l'adresse suivante :</p>
-
-        <ul>
-
-            <li>Téléphone : 06.24.99.94.30</li>
-
-            <li>Email : raphael.boeebosale.pro@gmail.com</li>
-
-        </ul>
-
-    </div>
-
-</div>
 
 
 
 </body>
+
+
 
 </html>
